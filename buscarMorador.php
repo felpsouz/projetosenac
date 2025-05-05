@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tipo_busca"]) && isset
                 break;
             case "morador":
                 $query = "SELECT * FROM senac WHERE morador  LIKE :valor_busca";
+                $valor_busca = "%" . $valor_busca . "%";
                 break;
                 throw new Exception("Tipo de busca inválido");
         }
