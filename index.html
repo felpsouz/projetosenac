@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sistema de Busca de Moradores</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>  
         <div class="buscar-morador">
-          <h2>Buscar Morador</h2>
-          <form action="buscarMorador.php" method="POST">
-            <input type="text" name="nome" placeholder="Digite Dados do Morador" required>
-            <button type="submit">Buscar</button>
-            <button type="reset">Limpar</button>
-          </form>
-        
+            <h2>Busca de Moradores do Condomínio</h2>
+            <form action="buscarMorador.php" method="POST">
+                <select name="tipo_busca" required>
+                    <option value="">Selecione o tipo de busca</option>
+                    <option value="bloco">Bloco</option>
+                    <option value="apartamento">Apartamento</option>
+                    <option value="nome">Nome do Morador</option>
+                </select>
+                <input type="text" name="valor_busca" placeholder="Digite o valor para busca" required>
+                <button type="submit">Buscar</button>
+                <button type="reset">Limpar</button>
+            </form>
         </div>
-        </nav>
+    </nav>
+
+    <!--
+    
+      -->
 </body>
 </html>
