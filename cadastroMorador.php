@@ -21,7 +21,7 @@ require 'conexao.php';
                         </h4>            
                     </div>
                   <div class="card-body">
-                      <form action="createUsuario.php" method="POST">
+                      <form action="criarUsuario.php" method="POST">
                       <div class="mb-3">
                         <label for="">Bloco</label>
                         <input type="text" name="bloco" id="" class="form-control">
@@ -35,7 +35,7 @@ require 'conexao.php';
                         <input type="text" name="morador" id="" class="form-control" required>
                       </div>                      
                       <div class="mb-3">
-                        <button type="submit" name="createUsuario" class="btn btn-primary">Salvar</button>
+                        <button type="submit" name="criarUsuario" class="btn btn-primary">Salvar</button>
                       </div>
                     </form>
                   </div>

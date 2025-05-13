@@ -12,7 +12,7 @@ $conexao = mysqli_connect($host, $user, $password, $dbName, $port);
 if (mysqli_connect_errno()) {
     die("Falha na conexão: " . mysqli_connect_error());
 }
-if (isset($_POST['createUsuario'])){
+if (isset($_POST['criarUsuario'])){
     $bloco = mysqli_real_escape_string($conexao, trim($_POST['bloco']));
     $apartamento = mysqli_real_escape_string($conexao, trim($_POST['apartamento']));
     $morador = mysqli_real_escape_string($conexao, trim($_POST['morador']));
