@@ -1,14 +1,8 @@
 <?php
 // Configurações de conexão com o banco de dados
-$host = "localhost";
-$port = 3306;
-$user = "root";
-$password = "admin";
-$dbName = "comdominio";
+require 'conexao.php';
 
-$conexao = "mysql:host=$host;port=$port;dbname=$dbName";
-
-// Inicializa variáveis
+// criação das variaveis que serão utilizadas
 $resultados = [];
 $mensagem = "";
 
@@ -22,16 +16,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tipo_busca"]) && isset
         $db = new PDO($conexao, $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        // Monta a consulta SQL baseada no tipo de busca selecionado
+        // Buscando dados no banco
         switch ($tipo_busca) {
             case "bloco":
-                $query = "SELECT * FROM moradores WHERE bloco = :valor_busca";
+                $query = "SELECT * FROM apartamentos WHERE bloco = :valor_busca";
                 break;
-            case "ap":
-                $query = "SELECT * FROM moradores WHERE ap = :valor_busca";
+            case "apartamento":
+                $query = "SELECT * FROM apartamentos WHERE apartamento = :valor_busca";
                 break;
             case "morador":
-                $query = "SELECT * FROM moradores WHERE nome  LIKE :valor_busca";
+                $query = "SELECT * FROM apartamentos WHERE morador LIKE :valor_busca";
                 $valor_busca = "%" . $valor_busca . "%";
                 break;
                 throw new Exception("Tipo de busca inválido");
@@ -54,16 +48,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tipo_busca"]) && isset
     }
 }
 
-// Inclui o arquivo com o formulário de busca e exibição dos resultados
 include 'index.html';
 ?>
 
 <?php
-    // Verifica se há resultados para exibir (este código só será executado se este arquivo for incluído em buscarMorador.php)
+    // Verifica se há resultados para exibir
     if (isset($resultados) && count($resultados) > 0) {
     ?>
         <div class="buscar-morador">
-            <h3>Resultados da Busca</h3>
+            <h3  style="display: inline-block;">Resultados da Busca</h3>
+            <a href="http://localhost/dashboard/projetosenac/index.html" style="display: inline-block;"><button type="reset">Limpar tela</button></a>
             <table>
                 <thead>
                     <tr>
@@ -75,9 +69,9 @@ include 'index.html';
                 <tbody>
                     <?php foreach ($resultados as $morador): ?>
                     <tr>
-                        <td><?php echo $morador['nome']; ?></td>
+                        <td><?php echo $morador['morador']; ?></td>
                         <td><?php echo $morador['bloco']; ?></td>
-                        <td><?php echo $morador['ap']; ?></td>
+                        <td><?php echo $morador['apartamento']; ?></td>
                     </tr>
                         
                     <?php endforeach; ?>
