@@ -3,8 +3,8 @@
 $host = "localhost";
 $port = 3306;
 $user = "root";
-$password = "";
-$dbName = "condominio";
+$password = "admin";
+$dbName = "comdominio";
 
 $conexao = "mysql:host=$host;port=$port;dbname=$dbName";
 
@@ -25,13 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tipo_busca"]) && isset
         // Monta a consulta SQL baseada no tipo de busca selecionado
         switch ($tipo_busca) {
             case "bloco":
-                $query = "SELECT * FROM senac WHERE bloco = :valor_busca";
+                $query = "SELECT * FROM moradores WHERE bloco = :valor_busca";
                 break;
             case "ap":
-                $query = "SELECT * FROM senac WHERE ap = :valor_busca";
+                $query = "SELECT * FROM moradores WHERE ap = :valor_busca";
                 break;
             case "morador":
-                $query = "SELECT * FROM senac WHERE morador  LIKE :valor_busca";
+                $query = "SELECT * FROM moradores WHERE nome  LIKE :valor_busca";
                 $valor_busca = "%" . $valor_busca . "%";
                 break;
                 throw new Exception("Tipo de busca inválido");
@@ -75,7 +75,7 @@ include 'index.html';
                 <tbody>
                     <?php foreach ($resultados as $morador): ?>
                     <tr>
-                        <td><?php echo $morador['morador']; ?></td>
+                        <td><?php echo $morador['nome']; ?></td>
                         <td><?php echo $morador['bloco']; ?></td>
                         <td><?php echo $morador['ap']; ?></td>
                     </tr>
